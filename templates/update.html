@@ -1,0 +1,59 @@
+
+    {% extends 'base.html' %}
+
+    {% block content %}
+
+    {%for message in get_flashed_messages()%}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{message}}</span>  
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {%endfor%}
+
+    
+
+      {% if name_to_update.id == current_user.id %}
+  
+            <h1>update list:</h1>
+            </br>
+            <div class="shadow p-3 mb-5 bg-body rounded">
+              <form action="/update/{{name_to_update.id}}" method="POST">
+                {{form.hidden_tag()}}
+                {{form.name.label() }}
+
+                {{form.name(class="form-control",value=name_to_update.name)}}
+                </br>
+                {{form.username.label() }}
+
+                {{form.username(class="form-control",value=name_to_update.username)}} 
+                </br>
+                {{form.email.label() }}
+
+                {{form.email(class="form-control",value=name_to_update.email)}} 
+                </br>
+                {{form.favorite_color.label() }}
+                {{form.favorite_color(class="form-control",value=name_to_update.favorite_color)}} 
+              </br>
+                {{form.submit(class="btn btn-primary")}}
+
+                <a class="btn btn-danger" href="{{url_for('delete',id=id)}}">Delete</a></td>
+              </tr>
+
+            </form>
+            </div>
+      {%else%}
+
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <span>you can't access to this page....</span>  
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <h1>ACCESS DENIED</h1>
+
+      {%endif%}
+
+
+</br></br></br></br>
+ 
+
+     {%endblock%}

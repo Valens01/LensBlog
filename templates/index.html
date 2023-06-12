@@ -1,0 +1,21 @@
+
+    {% extends 'base.html' %}
+
+    {% block content %}
+    
+        <h1>hello {{fisrt_name}}!!!!</h1>
+
+         <h1>My favarites pizza</h1>
+
+        {% for pizza in  favarite_pizza %}
+             {% if pizza == 42 %}
+                 {{pizza+100}}</br>
+            {%else%}
+                {{pizza}}</br>
+            {%endif%}
+
+         {% endfor %}
+
+
+
+     {%endblock%}

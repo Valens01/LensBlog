@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg  bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{url_for('index')}}">LensBlog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-1">
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('user',name='vava')}}">User profile</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('name')}}">name</a>
+         
+          </li>
+          {% if current_user.is_authenticated%}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+         
+          </li>
+          {%if current_user.id == 5 %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('admin')}}">Admin</a>
+         
+          </li>
+          {%endif%}
+          {%endif%}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('add_post')}}">Add Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('posts')}}">All Posts</a>
+          </li>
+
+          
+          
+        </ul>
+        <form class="d-flex" method="POST" action="{{url_for('search')}}" role="search">
+          {{form.hidden_tag()}}
+          <input class="form-control me-2" name="searched" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        {% if current_user.is_authenticated%}
+        <ul class="navbar-nav  mb-2 mb-lg-1">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+          </li>
+        </ul>
+        {%else%}
+     
+        <ul class="navbar-nav  mb-2 mb-lg-1">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('add_user')}}">Register</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('login')}}">Login</a>
+          </li>
+        </ul>
+
+        {%endif%}
+        
+      </div>
+    </div>
+  </nav>
